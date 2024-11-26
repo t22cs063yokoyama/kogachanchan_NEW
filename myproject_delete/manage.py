@@ -3,6 +3,10 @@
 import os
 import sys
 
+# ここがコンフリクトポイントになるコード
+
+x = 10
+print(x * 10)
 
 def main():
     """Run administrative tasks."""
