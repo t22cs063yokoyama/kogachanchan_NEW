@@ -3,11 +3,6 @@
 import os
 import sys
 
-# ここがコンフリクトポイントになるコード
-
-x = 10
-print(x * 10)
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
