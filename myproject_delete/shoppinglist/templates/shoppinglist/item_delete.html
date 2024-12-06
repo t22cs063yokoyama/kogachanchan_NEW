@@ -1,11 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %} Delete {% endblock %}
+{% block title %} delete {% endblock %}
 
 {% block main %}
-<form action="{% url 'shoppinglist:delete' %}" method="post">
+<form action="" method="post" onSubmit="return CheckDelete()">
 {% csrf_token %}
 {{ form }}
-<input type="submit"/>
+<table class="table">
+    <thead class="thead-dark">
+        <tr class="table-dark">
+            <th>#</th>
+            <th>名前</th>
+            <th>個数</th>
+            <th>期限</th>
+            <th>済み？</th>
+            <th>店</th>
+            <th>削除ボタン</th>
+        </tr>
+    </thead>
+    
+<tbody>    
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.count }}</td>
+        <td>{{ item.buy_date }}</td>
+        <td>{% if item.buy == False %} <font color='red'>Not yet</font> {% endif %}
+            {% if item.buy == True %} Yet {% endif %}</td>
+        <td>{{ item.shop }}</td>
+        <td><input type="submit" value="レコード削除"></td>
+
+    </tr>
+     
+    {% csrf_token %}
 </form>
+</table>
+</tbody>
+
+<ul>
+    <li><a href="{% url 'shoppinglist:list' %}">一覧へ戻る</a></li>
+</ul>
+<!-- ---------------------------------------------------------------------------------- -->
+ 
+  <script>
+    function CheckDelete(){
+        if(confirm('【警告】本当にこのレコードを削除しますか？')){ 
+            return true; 
+        }else{
+            
+            return false; 
+        }
+    }
+  </script>
+
+
 {% endblock %}

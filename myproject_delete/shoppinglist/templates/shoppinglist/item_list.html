@@ -8,14 +8,16 @@
 {{ form }}
 <input type="submit"/>
 </form>
-<table class="table"> """変更した"""
- <thead class="table-dark"> """変更した"""
+<table class="table"> 
+ <thead class="table-dark"> 
   <tr>
    <th>#</th>
    <th>名前</th>
    <th>個数</th>
    <th>期日</th>
    <th>済み?</th>
+   <th>店</th>
+   <th>削除</th>
   </tr>
  </thead>
  <tbody>
@@ -26,12 +28,17 @@
    <td>{{ item.count }}</td>
    <td>{{ item.buy_date }}</td>
    <td>{% if item.buy == False %} <font color='red'>Not yet</font> {% endif %}
-                   {% if item.buy == True %} Yet {% endif %}</td>
+       {% if item.buy == True %} Yet {% endif %}</td>
+   <td>{{ item.shop }}</td>
+   <td><a href="/shoppinglist/delete/id={{item.id}}">[削除]</a></td> 
  </tr>
 {% endfor %}
 </tbody>
 </table>
+
 <ul>
-  <li><a href="{% url 'shoppinglist:delete' %}">削除</a></li>
+  <li><a href="{% url 'shoppinglist:add' %}">追加</a></li>
 </ul>
+  
+
 {% endblock %}
